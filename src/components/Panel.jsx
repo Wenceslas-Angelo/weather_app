@@ -1,10 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Search from './Search';
 
-function Panel() {
+function Panel({ setSearchTerm }) {
   return (
     <div className="absolute w-[40%] h-full top-0 right-0 bg-black/25 backdrop-blur">
-      <Search />
+      <Search setSearchTerm={setSearchTerm} />
 
       <ul className="my-5 p-5 text-2xl border-b-2 border-gray-100">
         <li className="my-3">New York</li>
@@ -31,5 +33,9 @@ function Panel() {
     </div>
   );
 }
+
+Panel.propTypes = {
+  setSearchTerm: PropTypes.func,
+};
 
 export default Panel;

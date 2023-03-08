@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 
 import { GEO_API_URL, GEO_API_OPTIONS } from '../utils/Api';
 
-function Search() {
+function Search({ setSearchTerm }) {
   const [query, setQuery] = useState('');
   const [showSuggestions, setShowSuggestion] = useState(false);
   const [cities, setCities] = useState([]);
@@ -32,8 +33,14 @@ function Search() {
     }
   }, [query]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearchTerm(query);
+    setShowSuggestion(false);
+  };
+
   return (
-    <form className="my-4">
+    <form className="my-4" onSubmit={(e) => handleSubmit(e)}>
       <input
         type="text"
         placeholder="Search Location..."
@@ -49,6 +56,7 @@ function Search() {
               className="p-2 flex justify-between items-center font-medium text-md cursor-pointer hover:bg-black/10"
               onClick={() => {
                 setQuery(city.name);
+                setSearchTerm(query);
                 setShowSuggestion(false);
               }}
             >
@@ -64,5 +72,9 @@ function Search() {
     </form>
   );
 }
+
+Search.propTypes = {
+  setSearchTerm: PropTypes.func,
+};
 
 export default Search;
