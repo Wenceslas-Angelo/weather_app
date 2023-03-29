@@ -3,31 +3,37 @@ import PropTypes from 'prop-types';
 
 import Search from './Search';
 
-function Panel({ setSearchTerm }) {
+function Panel({ setSearchTerm, cloudy, wind, humidity }) {
+  const cities = ['New York', 'California', 'Paris', 'Tokyo'];
   return (
-    <div className="absolute w-[40%] h-full top-0 right-0 bg-black/25 backdrop-blur">
+    <div className="lg:absolute lg:w-[40%] h-full top-0 right-0 bg-black/25 backdrop-blur">
       <Search setSearchTerm={setSearchTerm} />
 
       <ul className="my-5 p-5 text-2xl border-b-2 border-gray-100">
-        <li className="my-3">New York</li>
-        <li className="my-3">California</li>
-        <li className="my-3">Paris</li>
-        <li className="my-3">Tokyo</li>
+        {cities.map((city) => (
+          <li
+            key={city}
+            onClick={() => setSearchTerm(city)}
+            className="my-3 cursor-pointer"
+          >
+            {city}
+          </li>
+        ))}
       </ul>
 
       <ul className="my-5 px-5 text-2xl border-b-2 border-gray-100">
         <h3 className="text-center font-semibold text-3xl">Weather Details</h3>
         <li className="my-4 flex justify-between items-center">
           <span>Cloudy</span>
-          <span>89%</span>
+          <span>{cloudy}%</span>
         </li>
         <li className="my-4 flex justify-between items-center">
           <span>Wind</span>
-          <span>8km/h</span>
+          <span>{wind}km/h</span>
         </li>
         <li className="my-4 flex justify-between items-center">
           <span>Humidity</span>
-          <span>64%</span>
+          <span>{humidity}%</span>
         </li>
       </ul>
     </div>
@@ -36,6 +42,9 @@ function Panel({ setSearchTerm }) {
 
 Panel.propTypes = {
   setSearchTerm: PropTypes.func,
+  cloudy: PropTypes.number,
+  wind: PropTypes.number,
+  humidity: PropTypes.number,
 };
 
 export default Panel;
