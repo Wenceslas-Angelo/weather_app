@@ -1,17 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import Panel from './components/Panel';
 import Weather from './components/Weather';
-import cloudy from './assets/day/cloudy.jpg';
 import { BASE_URL } from './utils/Api';
+import { bgImage, clearCode, cloudyCode, rainyCode } from './constants';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('London');
   const [weather, setWeather] = useState({});
+  const [isDay, setIsDay] = useState(1);
+  const [conditionCode, setConditionCode] = useState(null);
+  const [background, setBackground] = useState('');
+
+  const changeBg = () => {
+    if (clearCode(conditionCode)) {
+      setBackground(isDay ? bgImage.day.clear : bgImage.night.clear);
+    } else if (rainyCode(conditionCode)) {
+      setBackground(isDay ? bgImage.day.rain : bgImage.night.rain);
+    } else if (cloudyCode(conditionCode)) {
+      setBackground(isDay ? bgImage.day.cloud : bgImage.night.cloud);
+    } else {
+      setBackground(isDay ? bgImage.day.snow : bgImage.night.snow);
+    }
+  };
 
   const fetchWeather = async () => {
     const api = await fetch(`${BASE_URL}&q=${searchTerm}`);
     const data = await api.json();
     setWeather(data);
+    setIsDay(data.current.is_day);
+    setConditionCode(data.current.condition.code);
+    changeBg();
   };
 
   useEffect(() => {
@@ -22,7 +40,9 @@ function App() {
     <>
       {weather.current && (
         <div
-          style={{ backgroundImage: `url(${cloudy})` }}
+          style={{
+            backgroundImage: `url(${background})`,
+          }}
           className={`min-h-[100vh] bg-cover bg-no-repeat bg-center relative text-white transition-opacity`}
         >
           <Weather

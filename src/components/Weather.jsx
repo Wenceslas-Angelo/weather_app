@@ -30,7 +30,7 @@ function Weather({ city, temp, condition, date, iconCode }) {
         </div>
         <div className="flex justify-center items-center flex-col">
           <img src={iconCode} alt="icon" width={50} height={50} />
-          <span className="text-3xl">{condition}</span>
+          <span className="text-3xl w-80 text-center">{condition}</span>
         </div>
       </div>
     </div>

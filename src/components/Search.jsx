@@ -7,7 +7,9 @@ function Search({ setSearchTerm }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSearchTerm(query);
+    if (query) {
+      setSearchTerm(query);
+    }
   };
 
   return (
