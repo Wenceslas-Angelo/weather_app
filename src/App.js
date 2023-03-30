@@ -3,6 +3,8 @@ import Panel from './components/Panel';
 import Weather from './components/Weather';
 import { BASE_URL } from './utils/Api';
 import { bgImage, clearCode, cloudyCode, rainyCode } from './constants';
+import Spinner from './components/Spinner';
+import Error from './components/Error';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('London');
@@ -10,6 +12,8 @@ function App() {
   const [isDay, setIsDay] = useState(1);
   const [conditionCode, setConditionCode] = useState(null);
   const [background, setBackground] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const changeBg = () => {
     if (clearCode(conditionCode)) {
@@ -24,21 +28,30 @@ function App() {
   };
 
   const fetchWeather = async () => {
-    const api = await fetch(`${BASE_URL}&q=${searchTerm}`);
-    const data = await api.json();
-    setWeather(data);
-    setIsDay(data.current.is_day);
-    setConditionCode(data.current.condition.code);
-    changeBg();
+    try {
+      setError(false);
+      setLoading(true);
+      const api = await fetch(`${BASE_URL}&q=${searchTerm}`);
+      const data = await api.json();
+      setWeather(data);
+      setIsDay(data.current.is_day);
+      setConditionCode(data.current.condition.code);
+      changeBg();
+    } catch (e) {
+      setError(true);
+    }
+    setLoading(false);
   };
 
   useEffect(() => {
     fetchWeather();
   }, [searchTerm]);
 
+  if (error) return <Error setSearchTerm={setSearchTerm} />;
+
   return (
     <>
-      {weather.current && (
+      {!loading && weather.current ? (
         <div
           style={{
             backgroundImage: `url(${background})`,
@@ -60,6 +73,8 @@ function App() {
             humidity={weather.current.humidity}
           />
         </div>
+      ) : (
+        <Spinner />
       )}
     </>
   );
