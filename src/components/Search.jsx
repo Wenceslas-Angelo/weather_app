@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 
-function Search({ setSearchTerm, absoluteBtn = true }) {
+function Search({ setSearchTerm }) {
   const [query, setQuery] = useState('');
 
   const handleSubmit = (e) => {
@@ -14,7 +14,7 @@ function Search({ setSearchTerm, absoluteBtn = true }) {
 
   return (
     <form
-      className={`my-4 ${!absoluteBtn && 'flex justify-center'}`}
+      className="my-4 flex justify-center"
       onSubmit={(e) => handleSubmit(e)}
     >
       <input
@@ -27,9 +27,8 @@ function Search({ setSearchTerm, absoluteBtn = true }) {
 
       <button
         type="submit"
-        className={`${
-          absoluteBtn && 'absolute top-0 right-0'
-        } p-5 bg-[#181818]`}
+        className="
+        p-5 bg-[#181818]"
       >
         <FaSearch fontSize={20} color="#fff" />
       </button>
@@ -39,7 +38,6 @@ function Search({ setSearchTerm, absoluteBtn = true }) {
 
 Search.propTypes = {
   setSearchTerm: PropTypes.func,
-  absoluteBtn: PropTypes.bool,
 };
 
 export default Search;

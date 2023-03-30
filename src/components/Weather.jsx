@@ -22,15 +22,15 @@ function Weather({ city, temp, condition, date, iconCode }) {
     <div className="lg:absolute top-0 left-0 w-full h-full flex justify-between items-start flex-col pl-5 pt-5 pb-20">
       <h2 className="text-3xl font-semibold">The Weather.</h2>
 
-      <div className="flex justify-center items-center">
+      <div className="mx-auto lg:mx-0 mt-10 lg:mt-0 flex justify-center items-center flex-col sm:flex-row">
         <h1 className=" text-8xl">{temp}&#176;</h1>
-        <div className="mx-10 flex justify-center items-center flex-col">
+        <div className="mr-5 flex justify-center items-center flex-col">
           <h1 className="text-5xl font-bold mb-3">{city}</h1>
           <small className="text-2xl">{`${dayOfTheWeek()} ${date}`}</small>
         </div>
         <div className="flex justify-center items-center flex-col">
           <img src={iconCode} alt="icon" width={50} height={50} />
-          <span className="text-3xl w-80 text-center">{condition}</span>
+          <span className="text-3xl text-center">{condition}</span>
         </div>
       </div>
     </div>
