@@ -51,7 +51,7 @@ function App() {
 
   return (
     <>
-      {!loading && weather.current ? (
+      {!loading && background && weather.current ? (
         <div
           style={{
             backgroundImage: `url(${background})`,
