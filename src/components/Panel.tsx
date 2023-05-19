@@ -1,9 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import Search from './Search';
 
-function Panel({ setSearchTerm, cloudy, wind, humidity }) {
+type PanelProps = {
+  cloudy: number;
+  wind: number;
+  humidity: number;
+  setSearchTerm: (term: string) => void;
+};
+
+function Panel({ setSearchTerm, cloudy, wind, humidity }: PanelProps) {
   const cities = ['New York', 'California', 'Paris', 'Tokyo'];
   return (
     <div className="lg:absolute lg:w-[40%] h-full top-0 right-0 bg-black/25 backdrop-blur">
@@ -39,12 +44,5 @@ function Panel({ setSearchTerm, cloudy, wind, humidity }) {
     </div>
   );
 }
-
-Panel.propTypes = {
-  setSearchTerm: PropTypes.func,
-  cloudy: PropTypes.number,
-  wind: PropTypes.number,
-  humidity: PropTypes.number,
-};
 
 export default Panel;

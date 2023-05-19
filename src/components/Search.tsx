@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 
-function Search({ setSearchTerm }) {
+type SearchProps = {
+  setSearchTerm: (term: string) => void;
+};
+
+function Search({ setSearchTerm }: SearchProps) {
   const [query, setQuery] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (query) {
       setSearchTerm(query);
