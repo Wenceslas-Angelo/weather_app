@@ -1,7 +1,7 @@
-import { BASE_WEATHER_URL } from '../../utils/Api';
+import { FORCAST_WEATHER } from '../../utils/Api';
 
 const fetchWeather = async (city: string) => {
-  const api = await fetch(`${BASE_WEATHER_URL}&q=${city}`);
+  const api = await fetch(`${FORCAST_WEATHER}&q=${city}`);
   const weather = await api.json();
   return weather;
 };

@@ -24,6 +24,7 @@ function App() {
             condition={weather.data.current.condition.text}
             date={weather.data.location.localtime}
             iconCode={weather.data.current.condition.icon}
+            forecast={weather.data.forecast}
           />
 
           <Panel

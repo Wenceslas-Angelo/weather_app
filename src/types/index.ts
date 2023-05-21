@@ -25,7 +25,22 @@ export interface Current {
   cloud: number;
 }
 
+export interface Forecast {
+  forecastday: [
+    {
+      date: string;
+      day: {
+        maxtemp_c: number;
+        mintemp_c: number;
+        maxwind_kph: number;
+        condition: Condition;
+      };
+    }
+  ];
+}
+
 export interface Weather {
   location: Location;
   current: Current;
+  forecast: Forecast;
 }
