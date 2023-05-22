@@ -8,15 +8,15 @@ import Spinner from './components/Spinner';
 import Error from './components/Error';
 
 function App() {
-  const { weather, setCity } = useWeather();
+  const { weather, setCity, weatherBgClassName } = useWeather();
 
-  if (weather.isError) return <Error />;
+  if (weather.isError) return <Error setSearchTerm={setCity} />;
 
   return (
     <>
       {!weather.isLoading && weather.data && weather.data.current ? (
         <div
-          className={`min-h-[100vh] bg-gray-700 relative text-white transition-opacity`}
+          className={`min-h-[100vh] bg-gray-700 relative text-white transition-opacity ${weatherBgClassName}`}
         >
           <Weather
             city={weather.data.location.name}

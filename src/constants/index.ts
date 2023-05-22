@@ -1,15 +1,3 @@
-//night bg
-// import night_clear from '../assets/night/clear.jpg';
-// import night_cloud from '../assets/night/cloud.jpg';
-// import night_rain from '../assets/night/rain.jpg';
-// import night_snow from '../assets/night/snow.jpg';
-
-//day bg
-// import day_clear from '../assets/day/clear.jpg';
-// import day_cloud from '../assets/day/cloud.jpg';
-// import day_rain from '../assets/day/rain.jpg';
-// import day_snow from '../assets/day/snow.jpg';
-
 export const clearCode = (code: number) => code === 1000;
 
 export const cloudyCode = (code: number) =>
@@ -44,18 +32,3 @@ export const rainyCode = (code: number) =>
   code === 1246 ||
   code === 1249 ||
   code === 1252;
-
-// export const bgImage = {
-//   night: {
-//     clear: night_clear,
-//     cloud: night_cloud,
-//     rain: night_rain,
-//     snow: night_snow,
-//   },
-//   day: {
-//     clear: day_clear,
-//     cloud: day_cloud,
-//     rain: day_rain,
-//     snow: day_snow,
-//   },
-// };

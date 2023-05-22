@@ -1,10 +1,13 @@
 import React from 'react';
 import errorImg from '../assets/danger.png';
-import PropTypes from 'prop-types';
 import Search from './Search';
 import bgError from '../assets/bgError.jpg';
 
-const Error = ({ setSearchTerm }) => {
+type ErrorProps = {
+  setSearchTerm: (term: string) => void;
+};
+
+const Error = ({ setSearchTerm }: ErrorProps) => {
   return (
     <div
       className="h-[100vh] flex justify-center items-center"
@@ -19,10 +22,6 @@ const Error = ({ setSearchTerm }) => {
       </div>
     </div>
   );
-};
-
-Error.propTypes = {
-  setSearchTerm: PropTypes.func,
 };
 
 export default Error;
